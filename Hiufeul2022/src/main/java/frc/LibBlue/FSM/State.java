@@ -7,14 +7,14 @@
 
 package frc.LibBlue.FSM;
 
-import frc.LibPurple.control.Loop;
+import frc.LibBlue.Utils.Loop;
 
 /**
  * The action of the state should be written in a method named run, ovveride it.
  */
 public abstract class State extends Loop {
-    public State() {
-        super();
+    public State(double frequency) {
+        super(frequency);
     }
 
     /**
