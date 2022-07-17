@@ -17,6 +17,14 @@ public abstract class State extends Loop {
         super(frequency);
     }
 
+    @Override
+    public void run() {
+        if (enabled)
+            execute();
+    }
+
+    abstract public void execute();
+
     /**
         This function will return true if this state should start.
      */
