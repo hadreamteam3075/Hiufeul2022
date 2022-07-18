@@ -1,5 +1,7 @@
 package frc.LibBlue.StateMachine;
 
+import edu.wpi.first.wpilibj2.command.Subsystem;
+
 public class StateMachineScheduler {
     private StateMachineManager[] stateMachineManagers;
 
@@ -11,6 +13,34 @@ public class StateMachineScheduler {
         for (StateMachineManager stateMachineManager: this.stateMachineManagers) {
             stateMachineManager.isTransitionable();
             stateMachineManager.run();
+        }
+    }
+
+    public void stopAll() {
+        for (StateMachineManager stateMachineManager: this.stateMachineManagers) {
+            stateMachineManager.stop();
+        }
+    }
+
+    public void stop(Subsystem subsystem) {
+        for (StateMachineManager stateMachineManager: this.stateMachineManagers) {
+            if (stateMachineManager.getSubsystem().equals(subsystem)) {
+                stateMachineManager.stop();
+            }
+        }
+    }
+
+    public void start(Subsystem subsystem) {
+       for (StateMachineManager stateMachineManager: this.stateMachineManagers) {
+            if (stateMachineManager.getSubsystem().equals(subsystem)) {
+                stateMachineManager.initialize();
+            }
+        }
+    }
+
+   public void startAll() {
+        for (StateMachineManager stateMadMachineManager: this.stateMachineManagers) {
+            stateMadMachineManager.initialize();
         }
     }
 }
