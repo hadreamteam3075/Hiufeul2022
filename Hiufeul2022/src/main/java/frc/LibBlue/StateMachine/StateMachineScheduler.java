@@ -11,7 +11,7 @@ public class StateMachineScheduler {
 
     public void update() {
         for (StateMachineManager stateMachineManager: this.stateMachineManagers) {
-            stateMachineManager.isTransitionable();
+            stateMachineManager.update();
             stateMachineManager.run();
         }
     }

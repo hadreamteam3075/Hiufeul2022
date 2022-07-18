@@ -20,7 +20,7 @@ public class StateMachineManager {
         this.subsystem = subsystem;
     }
 
-    public void isTransitionable() {
+    public void update() {
         for (StateMachineLink statemachine: this.currentLink.getConnections()) {
             if (statemachine.getState().isTransitionalable()) {
                 this.transition(statemachine);
