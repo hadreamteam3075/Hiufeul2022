@@ -16,13 +16,19 @@ public class StateMachineScheduler {
         }
     }
 
-    public void stopAll() {
+    public void stop() {
         for (StateMachineManager stateMachineManager: this.stateMachineManagers) {
             stateMachineManager.stop();
         }
     }
+    
+    public void start() {
+        for (StateMachineManager stateMadMachineManager: this.stateMachineManagers) {
+            stateMadMachineManager.initialize();
+        }
+    }
 
-    public void stop(Subsystem subsystem) {
+    public void stopSubsystem(Subsystem subsystem) {
         for (StateMachineManager stateMachineManager: this.stateMachineManagers) {
             if (stateMachineManager.getSubsystem().equals(subsystem)) {
                 stateMachineManager.stop();
@@ -30,17 +36,11 @@ public class StateMachineScheduler {
         }
     }
 
-    public void start(Subsystem subsystem) {
+    public void startSubsystem(Subsystem subsystem) {
        for (StateMachineManager stateMachineManager: this.stateMachineManagers) {
             if (stateMachineManager.getSubsystem().equals(subsystem)) {
                 stateMachineManager.initialize();
             }
-        }
-    }
-
-   public void startAll() {
-        for (StateMachineManager stateMadMachineManager: this.stateMachineManagers) {
-            stateMadMachineManager.initialize();
         }
     }
 }
