@@ -22,7 +22,7 @@ public class StateMachineManager {
 
     public void update() {
         for (StateMachineLink statemachine: this.currentLink.getConnections()) {
-            if (statemachine.getState().isTransitionalable()) {
+            if (statemachine.getState().isTransitionalable(currentLink)) {
                 this.transition(statemachine);
             }
         }
