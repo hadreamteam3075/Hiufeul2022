@@ -11,7 +11,7 @@ public class StateMachineScheduler {
 
     public void update() {
         for (StateMachineManager stateMachineManager: this.stateMachineManagers) {
-            stateMachineManager.isTransitionable();
+            stateMachineManager.update();
             stateMachineManager.run();
         }
     }
@@ -35,12 +35,6 @@ public class StateMachineScheduler {
             if (stateMachineManager.getSubsystem().equals(subsystem)) {
                 stateMachineManager.initialize();
             }
-        }
-    }
-
-   public void startAll() {
-        for (StateMachineManager stateMadMachineManager: this.stateMachineManagers) {
-            stateMadMachineManager.initialize();
         }
     }
 }

@@ -7,5 +7,5 @@ public abstract class State {
 
     public abstract void end();
 
-    public abstract boolean isTransitionalable();
+    public abstract boolean isTransitionalable(StateMachineLink currentLink);
 }
