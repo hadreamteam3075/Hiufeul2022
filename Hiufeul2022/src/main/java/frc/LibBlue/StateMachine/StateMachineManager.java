@@ -42,7 +42,7 @@ public class StateMachineManager {
 
     public void run() {
         if (!this.enable) return;
-        
+
         this.currentStateMachine.getCurrentState().run();
     }
 
@@ -52,5 +52,6 @@ public class StateMachineManager {
 
     public void stop() {
         this.enable = false;
+        this.currentStateMachine.getCurrentState().end();
     }
 }
