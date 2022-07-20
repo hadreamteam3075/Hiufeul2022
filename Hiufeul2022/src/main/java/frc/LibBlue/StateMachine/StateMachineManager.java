@@ -1,49 +1,60 @@
 package frc.LibBlue.StateMachine;
 
+import java.util.Arrays;
+
 import edu.wpi.first.wpilibj2.command.Subsystem;
 
 public class StateMachineManager {
-    private StateMachineLink currentLink;
+    private State[] allStates;
+    private State currentState;
+    private State defaultState;
+
     private Subsystem subsystem;
     private boolean enable;
 
-    public StateMachineManager(StateMachineLink initialLink) {
-        this.currentLink = initialLink;
-        
+    public StateMachineManager(State defaultState, State... states) {
+        this.currentState = defaultState;
+
+        this.allStates = Arrays.copyOf(states, states.length+1);
+        this.allStates[allStates.length-1] = defaultState;
+
         this.subsystem = null;
-        this.enable = true;
+        this.enable = false;
     }
 
-    public StateMachineManager(StateMachineLink initialLink, Subsystem subsystem) {
-        this(initialLink);
-        
+    public StateMachineManager(State initialState, Subsystem subsystem) {
+        this(initialState);
+
         this.subsystem = subsystem;
     }
 
     public void update() {
-        for (StateMachineLink statemachine: this.currentLink.getConnections()) {
-            if (statemachine.getState().isTransitionalable(currentLink)) {
-                this.transition(statemachine);
+        for (State state : this.allStates) {
+            if (state.isTransitionalable(currentState)) {
+                this.transition(state);
+                return;
             }
         }
     }
 
-    private void transition(StateMachineLink statemachine) {
-        this.currentLink.getState().end();
-        statemachine.getState().initialize();
-        this.currentLink = statemachine;
+    private void transition(State newState) {
+        this.currentState.end();
+        newState.initialize();
+        this.currentState = newState;
     }
 
     public void start() {
         this.enable = true;
 
-        this.currentLink.getState().initialize();
+        this.currentState = this.defaultState;
+        this.currentState.initialize();
     }
 
     public void run() {
-        if (!this.enable) return;
-        
-        this.currentLink.getState().run();
+        if (!this.enable)
+            return;
+
+        this.currentState.run();
     }
 
     public Subsystem getSubsystem() {
@@ -52,6 +63,6 @@ public class StateMachineManager {
 
     public void stop() {
         this.enable = false;
-        this.currentLink.getState().end();
+        this.currentState.end();
     }
 }
