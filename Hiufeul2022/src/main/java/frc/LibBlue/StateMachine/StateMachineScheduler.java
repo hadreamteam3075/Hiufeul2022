@@ -24,7 +24,7 @@ public class StateMachineScheduler {
 
     public void startAll() {
         for (StateMachineManager stateMachineManager: this.stateMachineManagers) {
-            stateMachineManager.initialize();
+            stateMachineManager.start();
         }
     }
 
@@ -39,7 +39,7 @@ public class StateMachineScheduler {
     public void start(Subsystem subsystem) {
        for (StateMachineManager stateMachineManager: this.stateMachineManagers) {
             if (stateMachineManager.getSubsystem().equals(subsystem)) {
-                stateMachineManager.initialize();
+                stateMachineManager.start();
             }
         }
     }

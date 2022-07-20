@@ -34,7 +34,7 @@ public class StateMachineManager {
         this.currentLink = statemachine;
     }
 
-    public void initialize() {
+    public void start() {
         this.enable = true;
 
         this.currentLink.getState().initialize();
