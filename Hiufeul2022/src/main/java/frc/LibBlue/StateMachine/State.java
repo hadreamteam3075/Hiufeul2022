@@ -7,5 +7,5 @@ public abstract class State {
 
     public abstract void end();
 
-    public abstract boolean isTransitionalable(State currentState);
+    public abstract boolean isTransitionable(State currentState);
 }

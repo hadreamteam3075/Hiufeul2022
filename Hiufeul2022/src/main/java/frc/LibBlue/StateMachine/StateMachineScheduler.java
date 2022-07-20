@@ -9,20 +9,20 @@ public class StateMachineScheduler {
         this.stateMachineManagers = stateMachineManagers;
     }
 
-    public void update() {
+    public void run() {
         for (StateMachineManager stateMachineManager: this.stateMachineManagers) {
             stateMachineManager.update();
             stateMachineManager.run();
         }
     }
 
-    public void stopAll() {
+    public void stop() {
         for (StateMachineManager stateMachineManager: this.stateMachineManagers) {
             stateMachineManager.stop();
         }
     }
 
-    public void startAll() {
+    public void start() {
         for (StateMachineManager stateMachineManager: this.stateMachineManagers) {
             stateMachineManager.start();
         }
