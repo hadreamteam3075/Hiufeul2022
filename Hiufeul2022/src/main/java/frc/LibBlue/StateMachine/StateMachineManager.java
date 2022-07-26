@@ -30,7 +30,7 @@ public class StateMachineManager {
 
     public void update() {
         for (State state : this.allStates) {
-            if (state != currentState && state.isTransitionable(currentState)) {
+            if (state != currentState && state.isTransitionable(currentState.getStateDescriptor())) {
                 this.transition(state);
                 return;
             }
