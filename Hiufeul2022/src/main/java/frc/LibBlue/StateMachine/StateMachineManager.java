@@ -14,6 +14,7 @@ public class StateMachineManager {
 
     public StateMachineManager(State defaultState, State... states) {
         this.currentState = defaultState;
+        this.defaultState = defaultState;
 
         this.allStates = Arrays.copyOf(states, states.length+1);
         this.allStates[allStates.length-1] = defaultState;
