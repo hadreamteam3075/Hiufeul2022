@@ -13,7 +13,7 @@ public abstract class State {
 
     public abstract void end();
 
-    public abstract boolean isTransitionable(State currentState);
+    public abstract State getNextState();
 
     public double getTimePassed() {
         return Timer.getFPGATimestamp() - this.initial_time;

@@ -1,11 +1,8 @@
 package frc.LibBlue.StateMachine;
 
-import java.util.Arrays;
-
 import edu.wpi.first.wpilibj2.command.Subsystem;
 
 public class StateMachineManager {
-    private State[] allStates;
     private State currentState;
     private State defaultState;
 
@@ -15,9 +12,6 @@ public class StateMachineManager {
     public StateMachineManager(State defaultState, State... states) {
         this.currentState = defaultState;
         this.defaultState = defaultState;
-
-        this.allStates = Arrays.copyOf(states, states.length+1);
-        this.allStates[allStates.length-1] = defaultState;
 
         this.subsystem = null;
         this.enable = false;
@@ -30,12 +24,12 @@ public class StateMachineManager {
     }
 
     public void update() {
-        for (State state : this.allStates) {
-            if (state != currentState && state.isTransitionable(currentState)) {
-                this.transition(state);
-                return;
-            }
-        }
+        State nextState = currentState.getNextState();
+
+        if (nextState == null)
+            return;
+        
+        transition(nextState);
     }
 
     private void transition(State newState) {
