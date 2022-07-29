@@ -34,7 +34,7 @@ public class StateMachineManager {
 
     private void transition(State newState) {
         this.currentState.end();
-        newState.initialize();
+        newState.initialization();
         this.currentState = newState;
     }
 
@@ -42,7 +42,7 @@ public class StateMachineManager {
         this.enable = true;
 
         this.currentState = this.defaultState;
-        this.currentState.initialize();
+        this.currentState.initialization();
     }
 
     public void run() {
